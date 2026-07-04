@@ -29,8 +29,6 @@ tracking_uri = os.getenv(
     f"file:///{(BASE_DIR / 'mlruns').resolve().as_posix()}"
 )
 
-mlflow.set_tracking_uri(tracking_uri)
-
 
 ARTIFACT_DIR = BASE_DIR / "artifacts"
 ARTIFACT_DIR.mkdir(exist_ok=True)
