@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/porto/project/SMSL-Reyhan_2/mlruns/0/faf80c77c1a04a2f8680b8a6f58cbeef/artifacts
+end_time: 1783178800476
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: faf80c77c1a04a2f8680b8a6f58cbeef
+run_name: sassy-crab-133
+run_uuid: faf80c77c1a04a2f8680b8a6f58cbeef
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783178478180
+status: 4
+tags: []
+user_id: haida

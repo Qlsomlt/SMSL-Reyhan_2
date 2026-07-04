@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/porto/project/SMSL-Reyhan_2/mlruns/0/3078c1ab5e8f4f028b996ab1cd36e90c/artifacts
+end_time: 1783177107471
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3078c1ab5e8f4f028b996ab1cd36e90c
+run_name: clean-dove-272
+run_uuid: 3078c1ab5e8f4f028b996ab1cd36e90c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783176781864
+status: 4
+tags: []
+user_id: haida

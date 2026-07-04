@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/porto/project/SMSL-Reyhan_2/mlruns/0/24e62d6faaa540628f93c51ca0fc1f80/artifacts
+end_time: 1783180043668
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 24e62d6faaa540628f93c51ca0fc1f80
+run_name: trusting-shrike-829
+run_uuid: 24e62d6faaa540628f93c51ca0fc1f80
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783180025280
+status: 3
+tags: []
+user_id: haida
