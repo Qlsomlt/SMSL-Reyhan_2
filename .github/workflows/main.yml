@@ -1,0 +1,41 @@
+name: MLflow CI
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  train-model:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: mlops
+          environment-file: MLProject/conda.yaml
+          auto-activate-base: false
+
+      - name: Install MLflow
+        shell: bash -l {0}
+        run: |
+          pip install mlflow==2.19.0
+
+      - name: Run MLProject
+        shell: bash -l {0}
+        run: |
+          mlflow run MLProject
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-artifacts
+          path: MLProject/artifacts
