@@ -44,7 +44,7 @@ mlflow.set_tracking_uri(
     )
 )
 
-
+mlflow.set_tracking_uri(tracking_uri)
 
 # =====================================
 # Load Data
