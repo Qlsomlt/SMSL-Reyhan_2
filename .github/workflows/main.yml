@@ -128,6 +128,10 @@ jobs:
           echo "===== python_env.yaml ====="
           cat model/logistic_regression_model/python_env.yaml
 
+      - name: Build Dockerfile Image
+        run: |
+          docker build -f Dockerfile -t logistic-regression-app:latest .
+
       - name: Build Docker Image
         shell: bash -l {0}
         env:
