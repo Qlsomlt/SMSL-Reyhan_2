@@ -12,7 +12,11 @@ RUN wget https://bootstrap.pypa.io/pip/3.10/get-pip.py -O /tmp/get-pip.py && \
     python /tmp/get-pip.py && \
     rm /tmp/get-pip.py
 
-RUN pip install --upgrade pip
+RUN apt install -y python3.10 python3.10-distutils \
+    && ln -s -f $(which python3.10) /usr/bin/python \
+    && wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py \
+    && python /tmp/get-pip.py
+
 
 # Install virtualenv
 RUN pip install virtualenv
