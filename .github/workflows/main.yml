@@ -113,24 +113,20 @@ jobs:
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
         run: |
           set -e
-          # sanity-check the run id file
           if [ ! -s run_id.txt ]; then
             echo "run_id.txt not found or empty"
             exit 1
           fi
           RUN_ID=$(cat run_id.txt)
           echo "Using RUN_ID=$RUN_ID"
-          # download artifacts from the remote tracking server
           mlflow artifacts download \
             -r "$RUN_ID" \
             -a logistic_regression_model \
             -d model
-
           echo "===== MLmodel ====="
-          cat model/MLmodel
-
+          cat model/logistic_regression_model/MLmodel
           echo "===== python_env.yaml ====="
-          cat model/python_env.yaml
+          cat model/logistic_regression_model/python_env.yaml
 
       - name: Build Docker Image
         shell: bash -l {0}

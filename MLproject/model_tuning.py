@@ -40,7 +40,7 @@ ARTIFACT_DIR = BASE_DIR / "artifacts"
 ARTIFACT_DIR.mkdir(exist_ok=True)
 
 CSV_PATH = BASE_DIR / "data_clean.csv"
-MODEL_PKL_PATH = ARTIFACT_DIR / "best_logistic_regression_model.pkl"
+MODEL_PKL_PATH = ARTIFACT_DIR / "logistic_regression_model.pkl"
 
 # =====================================
 # Load Data
@@ -123,7 +123,7 @@ with mlflow.start_run():
 
     mlflow.sklearn.log_model(
         sk_model=best_model,
-        artifact_path="best_logistic_regression_model",
+        artifact_path="logistic_regression_model",
     )
 
     # =====================================
