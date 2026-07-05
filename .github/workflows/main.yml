@@ -112,6 +112,7 @@ jobs:
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
         run: |
           python --version
+          pip --version
           mlflow --version
           echo "MLflow Tracking URI: $MLFLOW_TRACKING_URI"
           echo "MLflow Tracking Username: $MLFLOW_TRACKING_USERNAME"
