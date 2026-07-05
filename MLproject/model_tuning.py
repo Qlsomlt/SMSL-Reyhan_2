@@ -39,7 +39,7 @@ MODEL_PKL_PATH = ARTIFACT_DIR / "best_logistic_regression_model.pkl"
 # =====================================
 
 dagshub.init(
-    repo_owner="qlsomlt",
+    repo_owner="Qlsomlt",
     repo_name="SMSL-Reyhan_2",
     mlflow=True,
 )
