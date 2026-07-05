@@ -70,10 +70,14 @@ param_grid = {
     "solver": ["liblinear"],
 }
 
+# Bersihkan environment variable yang dibawa oleh mlflow run
+os.environ.pop("MLFLOW_RUN_ID", None)
+os.environ.pop("MLFLOW_PARENT_RUN_ID", None)
+
 # =====================================
 # Start MLflow Run
 # =====================================
-with mlflow.start_run(nested=True) as run:
+with mlflow.start_run() as run:
 
     model = LogisticRegression(
         max_iter=1000,
