@@ -35,20 +35,8 @@ PREDICTIONS_PATH = ARTIFACT_DIR / "predictions.csv"
 
 CSV_PATH = BASE_DIR / "data_clean.csv"
 
-# =========================
-# DAGS HUG + MLFLOW SETUP (IMPORTANT ORDER)
-# =========================
 
-# BEST PRACTICE: use dagshub auto config
-dagshub.init(
-    repo_owner="Qlsomlt",
-    repo_name="SMSL-Reyhan_2",
-    mlflow=True
-)
 
-# If you DON'T want dagshub.init, use manual auth instead:
-# os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME", "")
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN", "")
 
 mlflow.set_tracking_uri(
     "https://dagshub.com/Qlsomlt/SMSL-Reyhan_2.mlflow"

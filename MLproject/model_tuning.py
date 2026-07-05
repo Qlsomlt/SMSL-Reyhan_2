@@ -22,17 +22,6 @@ from sklearn.metrics import (
     confusion_matrix,
 )
 
-# =====================================
-# DAGSHUB + MLFLOW SETUP (IMPORTANT)
-# =====================================
-
-# Best practice: auto-configure everything
-dagshub.init(
-    repo_owner="Qlsomlt",
-    repo_name="SMSL-Reyhan_2",
-    mlflow=True
-)
-
 # Optional manual override (safe fallback)
 mlflow.set_tracking_uri(
     "https://dagshub.com/Qlsomlt/SMSL-Reyhan_2.mlflow"
