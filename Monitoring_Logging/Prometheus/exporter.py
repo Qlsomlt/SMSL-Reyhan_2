@@ -1,13 +1,13 @@
-from prometheus_client import start_http_server, Counter
+from prometheus_client import Counter, start_http_server
 import time
 
 prediction_counter = Counter(
     "prediction_total",
-    "Total prediction"
+    "Total predictions processed by the model exporter"
 )
 
-start_http_server(8000)
-
-while True:
-    prediction_counter.inc()
-    time.sleep(5)
+if __name__ == "__main__":
+    start_http_server(8000)
+    while True:
+        prediction_counter.inc()
+        time.sleep(5)
