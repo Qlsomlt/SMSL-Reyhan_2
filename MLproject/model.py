@@ -7,6 +7,7 @@ import pandas as pd
 import mlflow
 import mlflow.sklearn
 import os
+from mlflow.tracking import MlflowClient
 from preprocessing_data.preprocessing import prepare_data
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
@@ -34,6 +35,7 @@ PREDICTIONS_PATH = ARTIFACT_DIR / "predictions.csv"
 mlflow.set_tracking_uri(
     "https://dagshub.com/Qlsomlt/SMSL-Reyhan_2.mlflow"
 )
+print("Tracking URI:", mlflow.get_tracking_uri())
 
 mlflow.set_experiment("Logistic_Regression_Experiment")
 
@@ -49,7 +51,16 @@ CSV_PATH = BASE_DIR / "data_clean.csv"
     vectorizer,
 ) = prepare_data(CSV_PATH)
 
-with mlflow.start_run(nested=True) as run:
+client = MlflowClient()
+print(client.search_experiments())
+
+if os.getenv("MLFLOW_TRACKING_USERNAME") is None:
+    os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME", "")
+
+if os.getenv("MLFLOW_TRACKING_PASSWORD") is None:
+    os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN", "")
+
+with mlflow.start_run():
     try:
         # Parameters
         random_state = 42

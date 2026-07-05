@@ -6,7 +6,7 @@ import joblib
 import mlflow
 import mlflow.sklearn
 import pandas as pd
-
+import pickle
 from preprocessing_data.preprocessing import prepare_data
 
 from sklearn.linear_model import LogisticRegression
@@ -77,7 +77,7 @@ os.environ.pop("MLFLOW_PARENT_RUN_ID", None)
 # =====================================
 # Start MLflow Run
 # =====================================
-with mlflow.start_run() as run:
+with mlflow.start_run():
 
     model = LogisticRegression(
         max_iter=1000,
