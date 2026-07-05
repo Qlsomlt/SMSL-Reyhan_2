@@ -43,7 +43,18 @@ jobs:
         run: |
           echo "MLFLOW_TRACKING_USERNAME=$DAGSHUB_USERNAME" >> $GITHUB_ENV
           echo "MLFLOW_TRACKING_PASSWORD=$DAGSHUB_TOKEN" >> $GITHUB_ENV
-
+ 
+      - name: Check DagsHub Token
+        run: |
+          if [ -z "$DAGSHUB_TOKEN" ]; then
+            echo "Token NOT found"
+            exit 1
+          else
+            echo "Token OK"
+          fi
+        env:
+          DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+          
       - name: Run MLProject
         shell: bash -l {0}
         run: |

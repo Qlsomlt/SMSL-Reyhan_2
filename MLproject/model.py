@@ -31,19 +31,15 @@ MODEL_PATH = ARTIFACT_DIR / "logistic_regression_model.pkl"
 METRICS_PATH = ARTIFACT_DIR / "metrics.json"
 PREDICTIONS_PATH = ARTIFACT_DIR / "predictions.csv"
 
+os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME")
+os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN") if os.getenv("DAGSHUB_TOKEN") is not None else ""
+
 dagshub.init(
-    repo_owner="qlsomlt",
+    repo_owner="Qlsomlt",
     repo_name="SMSL-Reyhan_2",
     mlflow=True,
 )
 mlflow.set_experiment("Logistic_Regression_Experiment")
-
-os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME")
-os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN")
-
-mlflow.set_tracking_uri(
-    "https://dagshub.com/qlsomlt/SMSL-Reyhan_2.mlflow"
-)
 
 CSV_PATH = BASE_DIR / "data_clean.csv"
 
