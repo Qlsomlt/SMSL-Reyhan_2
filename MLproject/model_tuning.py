@@ -1,7 +1,7 @@
 import json
 import os
 from pathlib import Path
-
+import dagshub
 import joblib
 import mlflow
 import mlflow.sklearn
@@ -37,14 +37,20 @@ MODEL_PKL_PATH = ARTIFACT_DIR / "best_logistic_regression_model.pkl"
 # =====================================
 # MLflow Configuration
 # =====================================
-mlflow.set_tracking_uri(
-    os.getenv(
-        "MLFLOW_TRACKING_URI",
-        f"file:///{(BASE_DIR / 'mlruns').resolve().as_posix()}"
-    )
-)
 
-mlflow.set_tracking_uri(tracking_uri)
+dagshub.init(
+    repo_owner="qlsomlt",
+    repo_name="SMSL-Reyhan_2",
+    mlflow=True,
+)
+mlflow.set_experiment("Logistic_Regression_Experiment_Tuning")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME")
+os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN")
+
+mlflow.set_tracking_uri(
+    "https://dagshub.com/qlsomlt/SMSL-Reyhan_2.mlflow"
+)
 
 # =====================================
 # Load Data

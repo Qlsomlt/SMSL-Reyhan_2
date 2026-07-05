@@ -1,14 +1,13 @@
 import json
 import os
 from pathlib import Path
-
+import dagshub
 import joblib
 import pandas as pd
 import mlflow
 import mlflow.sklearn
-
+import os
 from preprocessing_data.preprocessing import prepare_data
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
@@ -21,21 +20,30 @@ from sklearn.metrics import (
 
 BASE_DIR = Path(__file__).resolve().parent
 
+ARTIFACT_DIR = BASE_DIR / "artifacts"
+ARTIFACT_DIR.mkdir(exist_ok=True)
+
 MLFLOW_ARTIFACT_DIR = BASE_DIR / "mlflow_artifacts"
 MLFLOW_ARTIFACT_DIR.mkdir(exist_ok=True)
 
-tracking_uri = os.getenv(
-    "MLFLOW_TRACKING_URI",
-    f"file:///{(BASE_DIR / 'mlruns').resolve().as_posix()}"
-)
-
-mlflow.set_tracking_uri(tracking_uri)
-ARTIFACT_DIR = BASE_DIR / "artifacts"
-ARTIFACT_DIR.mkdir(exist_ok=True)
 
 MODEL_PATH = ARTIFACT_DIR / "logistic_regression_model.pkl"
 METRICS_PATH = ARTIFACT_DIR / "metrics.json"
 PREDICTIONS_PATH = ARTIFACT_DIR / "predictions.csv"
+
+dagshub.init(
+    repo_owner="qlsomlt",
+    repo_name="SMSL-Reyhan_2",
+    mlflow=True,
+)
+mlflow.set_experiment("Logistic_Regression_Experiment")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME")
+os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN")
+
+mlflow.set_tracking_uri(
+    "https://dagshub.com/qlsomlt/SMSL-Reyhan_2.mlflow"
+)
 
 CSV_PATH = BASE_DIR / "data_clean.csv"
 
