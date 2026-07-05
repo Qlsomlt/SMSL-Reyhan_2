@@ -73,7 +73,7 @@ param_grid = {
 # =====================================
 # Start MLflow Run
 # =====================================
-with mlflow.start_run():
+with mlflow.start_run(nested=True) as run:
 
     model = LogisticRegression(
         max_iter=1000,

@@ -49,7 +49,7 @@ CSV_PATH = BASE_DIR / "data_clean.csv"
     vectorizer,
 ) = prepare_data(CSV_PATH)
 
-with mlflow.start_run():
+with mlflow.start_run(nested=True) as run:
     try:
         # Parameters
         random_state = 42
