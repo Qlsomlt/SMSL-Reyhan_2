@@ -37,8 +37,6 @@ MODEL_PKL_PATH = ARTIFACT_DIR / "best_logistic_regression_model.pkl"
 # =====================================
 # MLflow Configuration
 # =====================================
-os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME") if os.getenv("DAGSHUB_TOKEN") is not None else ""
-os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN") if os.getenv("DAGSHUB_TOKEN") is not None else ""
 
 dagshub.init(
     repo_owner="qlsomlt",
