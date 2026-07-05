@@ -31,13 +31,10 @@ MODEL_PATH = ARTIFACT_DIR / "logistic_regression_model.pkl"
 METRICS_PATH = ARTIFACT_DIR / "metrics.json"
 PREDICTIONS_PATH = ARTIFACT_DIR / "predictions.csv"
 
-
-
-dagshub.init(
-    repo_owner="qlsomlt",
-    repo_name="SMSL-Reyhan_2",
-    mlflow=True,
+mlflow.set_tracking_uri(
+    "https://dagshub.com/Qlsomlt/SMSL-Reyhan_2.mlflow"
 )
+
 mlflow.set_experiment("Logistic_Regression_Experiment")
 
 CSV_PATH = BASE_DIR / "data_clean.csv"

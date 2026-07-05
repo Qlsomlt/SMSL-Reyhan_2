@@ -38,10 +38,8 @@ MODEL_PKL_PATH = ARTIFACT_DIR / "best_logistic_regression_model.pkl"
 # MLflow Configuration
 # =====================================
 
-dagshub.init(
-    repo_owner="Qlsomlt",
-    repo_name="SMSL-Reyhan_2",
-    mlflow=True,
+mlflow.set_tracking_uri(
+    "https://dagshub.com/Qlsomlt/SMSL-Reyhan_2.mlflow"
 )
 mlflow.set_experiment("Logistic_Regression_Experiment_Tuning")
 
