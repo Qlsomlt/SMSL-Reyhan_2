@@ -35,7 +35,7 @@ os.environ["MLFLOW_TRACKING_USERNAME"] = os.getenv("DAGSHUB_USERNAME") if os.get
 os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("DAGSHUB_TOKEN") if os.getenv("DAGSHUB_TOKEN") is not None else ""
 
 dagshub.init(
-    repo_owner="Qlsomlt",
+    repo_owner="qlsomlt",
     repo_name="SMSL-Reyhan_2",
     mlflow=True,
 )
