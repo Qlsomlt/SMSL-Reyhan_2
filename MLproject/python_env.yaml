@@ -1,0 +1,15 @@
+python: "3.10"
+build_dependencies:
+  - pip
+  - setuptools
+  - wheel
+dependencies:
+  - pandas==2.2.3
+  - scikit-learn==1.6.1
+  - nltk==3.9.1
+  - numpy==2.2.6
+  - matplotlib==3.10.3
+  - scipy==1.15.3
+  - imbalanced-learn==0.13.0
+  - mlflow==2.22.0
+  - dagshub
