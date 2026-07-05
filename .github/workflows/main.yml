@@ -56,6 +56,10 @@ jobs:
 
       - name: Get Latest MLflow Run ID
         shell: bash -l {0}
+        env:
+          MLFLOW_TRACKING_URI: https://dagshub.com/Qlsomlt/SMSL-Reyhan_2.mlflow
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
         run: |
           python - <<'EOF'
           import mlflow
@@ -66,13 +70,14 @@ jobs:
           
           client = MlflowClient()
           
-          # Retry logic to handle timing issues
-          max_retries = 5
-          retry_delay = 2
+          max_retries = 10
+          retry_delay = 3
           
           for attempt in range(max_retries):
               try:
                   exp = client.get_experiment_by_name("Logistic_Regression_Experiment")
+                  if not exp:
+                      raise Exception("Experiment not found")
                   runs = client.search_runs(
                       experiment_ids=[exp.experiment_id],
                       order_by=["start_time DESC"],
@@ -81,10 +86,12 @@ jobs:
                   
                   if runs:
                       run_id = runs[0].info.run_id
-                      print(run_id)
+                      print(f"Found run ID: {run_id}")
                       with open("run_id.txt", "w") as f:
                           f.write(run_id)
                       break
+                  else:
+                      raise Exception("No runs found in experiment")
               except Exception as e:
                   if attempt < max_retries - 1:
                       print(f"Attempt {attempt + 1} failed: {e}. Retrying in {retry_delay}s...")
@@ -92,7 +99,7 @@ jobs:
                   else:
                       raise
           EOF
-
+          
       - name: Build Docker Image
         shell: bash -l {0}
         run: |
