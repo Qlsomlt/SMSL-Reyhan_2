@@ -22,11 +22,6 @@ jobs:
           environment-file: MLproject/conda.yaml
           auto-activate-base: false
 
-      - name: Install MLflow
-        shell: bash -l {0}
-        run: |
-          pip install mlflow==2.19.0
-
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -116,6 +111,10 @@ jobs:
           MLFLOW_TRACKING_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
         run: |
+          python --version
+          mlflow --version
+          echo "MLflow Tracking URI: $MLFLOW_TRACKING_URI"
+          echo "MLflow Tracking Username: $MLFLOW_TRACKING_USERNAME"
           RUN_ID=$(cat run_id.txt)
 
           mlflow models build-docker \
